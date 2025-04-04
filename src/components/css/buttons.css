@@ -1,0 +1,26 @@
+.card_button,
+button {
+  border-radius: 15px;
+  background-color: rgba(251, 253, 98, 0.877);
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  margin: 5px;
+}
+.card_button:hover,
+button:hover {
+  transform: scale(0.95);
+  transform: transform 0.5s;
+}
+.btn_word_del {
+  background-color: rgb(250, 140, 140);
+}
+.btn_word_edit {
+  background-color: rgb(252, 252, 164);
+}
+.btn_word_save {
+  background-color: rgb(138, 241, 138);
+}
+.btn_word_cancel {
+  background-color: rgb(248, 198, 105);
+}

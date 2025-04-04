@@ -1,7 +1,8 @@
 .App {
   text-align: center;
 }
-.card {
+.card,
+.add_word_form {
   height: auto;
   margin: 30px;
 }
@@ -10,20 +11,10 @@
   transition: transform 0.5s;
 }
 .card_front,
-.card_back {
+.card_back,
+.add_word_form {
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
   background: rgb(216, 201, 216);
-}
-.card_button {
-  border-radius: 15px;
-  background-color: rgba(251, 253, 98, 0.877);
-  border: none;
-  padding: 8px 15px;
-  cursor: pointer;
-}
-.card_button:hover {
-  transform: scale(0.95);
-  transform: transform 0.5s;
 }

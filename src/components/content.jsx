@@ -1,4 +1,5 @@
 import Wordcard from "./card_item";
+
 function Content() {
   return (
     <Wordcard

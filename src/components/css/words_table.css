@@ -1,0 +1,22 @@
+table {
+  margin: auto;
+}
+caption {
+  font-weight: 700;
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+.added_word {
+  padding: 8px;
+  margin: 5px 35px;
+}
+th {
+  padding: 2px 20px;
+  min-width: 90px;
+}
+input {
+  border-radius: 10px;
+  padding: 4px;
+  margin: 5px;
+  border: none;
+}
