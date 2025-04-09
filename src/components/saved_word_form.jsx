@@ -1,6 +1,3 @@
-import EditWord from "./button_edit";
-import DelWord from "./button_del";
-
 function AddedWordForm(props) {
   const { english, transcription, russian, tags } = props;
   return (
@@ -11,8 +8,8 @@ function AddedWordForm(props) {
         <td className="form_text-russian added_word">{russian}мир</td>
         <td className="form_text-tags added_word">{tags}world</td>
         <td>
-          <EditWord />
-          <DelWord />
+          <button className="btn_word_edit">Edit</button>
+          <button className="btn_word_del">Delete</button>
         </td>
       </tr>
     </tbody>

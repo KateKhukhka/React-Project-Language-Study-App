@@ -3,18 +3,14 @@
 }
 .card,
 .add_word_form {
-  height: auto;
   margin: 30px;
-}
-.card:active {
-  transform: scale(0.98);
-  transition: transform 0.5s;
-}
-.card_front,
-.card_back,
-.add_word_form {
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
   background: rgb(216, 201, 216);
+}
+.card {
+  height: 270px;
+  max-width: 200px;
+  margin: auto;
 }

@@ -10,7 +10,14 @@ button {
 .card_button:hover,
 button:hover {
   transform: scale(0.95);
-  transform: transform 0.5s;
+  transform: transform 0.8s;
+}
+.card_button_answer {
+  background-color: rgb(216, 201, 216);
+  margin: none;
+}
+.card_button_answer:hover {
+  transform: none;
 }
 .btn_word_del {
   background-color: rgb(250, 140, 140);

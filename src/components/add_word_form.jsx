@@ -1,8 +1,6 @@
-import SaveNewWord from "./button_save";
-import CancelNewWord from "./button_cancel";
-
 function AddNewWordForm(props) {
-  const { english, transcription, russian, tags } = props;
+  const { english, transcription, russian, tags, handleChange } = props;
+
   return (
     <tbody>
       <tr>
@@ -19,8 +17,10 @@ function AddNewWordForm(props) {
           <input className="form_input-tags" value={tags} />
         </td>
         <td>
-          <SaveNewWord />
-          <CancelNewWord />
+          <button type="button" className="btn_word_save" onClick={handleChange}>
+            Save
+          </button>
+          <button className="btn_word_cancel">Cancel</button>
         </td>
       </tr>
     </tbody>

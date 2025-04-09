@@ -2,14 +2,13 @@ import AddNewWordForm from "./add_word_form";
 import AddedWordForm from "./saved_word_form";
 import "./css/words_table.css";
 
+import React, { useState } from "react";
+
 function WordsTable() {
-  let tableItem;
-  let addedWord = false;
-  if (addedWord) {
-    tableItem = <AddedWordForm />;
-  } else {
-    tableItem = <AddNewWordForm />;
-  }
+  const [addedWord, setAddedWord] = useState(false);
+  const handleChange = () => {
+    setAddedWord(!addedWord);
+  };
   return (
     <>
       <form className="add_word_form">
@@ -24,7 +23,8 @@ function WordsTable() {
               <th></th>
             </tr>
           </thead>
-          {tableItem}
+          <AddNewWordForm handleChange={handleChange} />
+          {addedWord ? <AddedWordForm /> : <div></div>}
         </table>
       </form>
     </>
