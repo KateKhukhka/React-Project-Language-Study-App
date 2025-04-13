@@ -9,6 +9,7 @@ function WordsTable() {
   const handleChange = () => {
     setAddedWord(!addedWord);
   };
+
   return (
     <>
       <form className="add_word_form">

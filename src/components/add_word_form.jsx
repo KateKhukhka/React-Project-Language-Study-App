@@ -20,7 +20,9 @@ function AddNewWordForm(props) {
           <button type="button" className="btn_word_save" onClick={handleChange}>
             Save
           </button>
-          <button className="btn_word_cancel">Cancel</button>
+          <button className="btn_word_cancel" type="reset">
+            Cancel
+          </button>
         </td>
       </tr>
     </tbody>
