@@ -1,0 +1,18 @@
+.carousel_slide {
+  display: none;
+}
+.carousel_slide.active_slide {
+  display: block;
+}
+.carousel_button {
+  background: rgb(216, 201, 216);
+  margin: 15px;
+}
+.carousel_wrapper {
+  overflow: hidden;
+  padding: 8px;
+  margin: 5px 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -12,5 +12,6 @@
 .card {
   height: 270px;
   max-width: 200px;
+  min-width: 180px;
   margin: auto;
 }
