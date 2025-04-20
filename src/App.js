@@ -1,15 +1,15 @@
 import "./App.css";
 import Header from "./components/header";
-import Content from "./components/content";
+import CardContent from "./components/cardContent";
 import Footer from "./components/footer";
-import WordsTable from "./components/words_table";
+import WordsTable from "./components/wordsTable";
 import "./components/css/buttons.css";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Content />
+      <CardContent />
       <WordsTable />
       <Footer />
     </div>

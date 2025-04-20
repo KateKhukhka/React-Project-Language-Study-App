@@ -2,6 +2,12 @@ import React, { useState } from "react";
 
 function Wordcard(props) {
   const { name, transcription, translation, theme } = props;
+  Wordcard.defaultProps = {
+    name: "word",
+    transcription: "[wɜːd]",
+    translation: "слово",
+    theme: "",
+  };
   const [fliped, setFliped] = useState(false);
   const handleChange = () => {
     setFliped(!fliped);

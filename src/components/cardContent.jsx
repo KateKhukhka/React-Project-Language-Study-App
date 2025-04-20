@@ -3,7 +3,7 @@ import cardData from "./cardData";
 import { useState } from "react";
 import "./css/carousel.css";
 
-function Content() {
+function CardContent() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
@@ -41,4 +41,4 @@ function Content() {
     </div>
   );
 }
-export default Content;
+export default CardContent;

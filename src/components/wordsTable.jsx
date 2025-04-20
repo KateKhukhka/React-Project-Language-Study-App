@@ -1,5 +1,5 @@
-import AddNewWordForm from "./add_word_form";
-import AddedWordForm from "./saved_word_form";
+import AddNewWordForm from "./addWordForm";
+import AddedWordForm from "./savedWordForm";
 import "./css/words_table.css";
 
 import React, { useState } from "react";
