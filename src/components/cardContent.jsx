@@ -1,14 +1,14 @@
 import Wordcard from "./cardItem";
-import cardData from "./cardData";
 import { useState } from "react";
 import "./css/carousel.css";
 
-function CardContent() {
+function CardContent(props) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const cardData = props.cardData;
 
-  const nextSlide = () => {
+  function nextSlide() {
     setCurrentIndex((prevIndex) => (prevIndex === cardData.length - 1 ? 0 : prevIndex + 1));
-  };
+  }
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? cardData.length - 1 : prevIndex - 1));
