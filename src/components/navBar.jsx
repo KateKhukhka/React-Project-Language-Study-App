@@ -2,14 +2,13 @@ import { Link } from "react-router-dom";
 function NavBar() {
   return (
     <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/game">Card Game</Link>
-        </li>
-      </ul>
+      <Link to="/" className="nav_link">
+        Home
+      </Link>
+
+      <Link to="/game" className="nav_link">
+        Card Game
+      </Link>
     </nav>
   );
 }
