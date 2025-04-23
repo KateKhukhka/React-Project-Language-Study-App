@@ -11,7 +11,7 @@ function WordsTable() {
   };
 
   return (
-    <>
+    <main>
       <form className="add_word_form">
         <table>
           <caption>Words List</caption>
@@ -28,7 +28,7 @@ function WordsTable() {
           {addedWord ? <AddedWordForm /> : <div></div>}
         </table>
       </form>
-    </>
+    </main>
   );
 }
 

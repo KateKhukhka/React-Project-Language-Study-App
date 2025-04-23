@@ -15,30 +15,32 @@ function CardContent(props) {
   };
 
   return (
-    <div className="carousel_wrapper">
-      <button className="carousel_button prev" onClick={prevSlide}>
-        &#10094;
-      </button>
+    <main>
+      <div className="carousel_wrapper">
+        <button className="carousel_button prev" onClick={prevSlide}>
+          &#10094;
+        </button>
 
-      {cardData.map((item, index) => {
-        return (
-          <div className={index === currentIndex ? "carousel_slide active_slide" : "carousel_slide"}>
-            <Wordcard
-              index={index}
-              key={item.id}
-              name={item.english}
-              transcription={item.transcription}
-              translation={item.russian}
-              theme={item.tags}
-            />
-          </div>
-        );
-      })}
+        {cardData.map((item, index) => {
+          return (
+            <div className={index === currentIndex ? "carousel_slide active_slide" : "carousel_slide"}>
+              <Wordcard
+                index={index}
+                key={item.id}
+                name={item.english}
+                transcription={item.transcription}
+                translation={item.russian}
+                theme={item.tags}
+              />
+            </div>
+          );
+        })}
 
-      <button className="carousel_button next" onClick={nextSlide}>
-        &#10095;
-      </button>
-    </div>
+        <button className="carousel_button next" onClick={nextSlide}>
+          &#10095;
+        </button>
+      </div>
+    </main>
   );
 }
 export default CardContent;
