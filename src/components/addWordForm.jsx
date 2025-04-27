@@ -8,7 +8,7 @@ function AddNewWordForm() {
   const [transcription, setTranscription] = useState("");
   const [tags, setTags] = useState("");
   const [russian, setRussian] = useState("");
-  //generateId () => {id}
+
   const clickSave = () => {
     setWords([{ english, transcription, russian, tags }, ...words]);
   };
@@ -24,6 +24,11 @@ function AddNewWordForm() {
   }, []);
 
   console.log(words);
+
+  const clickDelete = (id) => {
+    const updatedCardData = cardData.filter((item) => item.id !== id);
+    setWords(updatedCardData);
+  };
 
   return (
     <tbody>
@@ -88,6 +93,7 @@ function AddNewWordForm() {
             transcription={item.transcription}
             russian={item.russian}
             tags={item.tags}
+            clickDelete={() => clickDelete(item.id)}
           />
         );
       })}

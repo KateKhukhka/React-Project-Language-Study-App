@@ -1,7 +1,7 @@
 //import { useState } from "react";
 
 function AddedWordForm(props) {
-  const { english, transcription, russian, tags } = props;
+  const { english, transcription, russian, tags, clickDelete } = props;
 
   //const [editValue, setEditValue] = useState(false);
   //const handleEditChange = setEditValue(!editValue);
@@ -18,7 +18,9 @@ function AddedWordForm(props) {
         <button className="btn_word_edit" type="button">
           Edit
         </button>
-        <button className="btn_word_del">Delete</button>
+        <button className="btn_word_del" type="button" onClick={clickDelete}>
+          Delete
+        </button>
       </td>
     </tr>
   );
