@@ -12,6 +12,10 @@ button:hover {
   transform: scale(0.95);
   transform: transform 0.8s;
 }
+button:disabled {
+  transform: none;
+  cursor: not-allowed;
+}
 .card_button_answer {
   background-color: rgb(216, 201, 216);
   margin: none;

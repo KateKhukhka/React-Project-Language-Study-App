@@ -23,7 +23,7 @@ function CardContent(props) {
 
         {cardData.map((item, index) => {
           return (
-            <div className={index === currentIndex ? "carousel_slide active_slide" : "carousel_slide"}>
+            <div key={item.id} className={index === currentIndex ? "carousel_slide active_slide" : "carousel_slide"}>
               <Wordcard
                 index={index}
                 key={item.id}

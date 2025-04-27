@@ -2,26 +2,21 @@ import React, { useState } from "react";
 
 function Wordcard(props) {
   const { name, transcription, translation, theme } = props;
-  Wordcard.defaultProps = {
-    name: "word",
-    transcription: "[wɜːd]",
-    translation: "слово",
-    theme: "",
-  };
-  const [fliped, setFliped] = useState(false);
+  const [flipped, setFlipped] = useState(false);
   const handleChange = () => {
-    setFliped(!fliped);
+    setFlipped(!flipped);
   };
   return (
     <div className="card">
       <h3 className="card_name">{name}</h3>
       <p className="card_transcription">{transcription}</p>
 
-      {fliped ? (
+      {flipped ? (
         <button onClick={handleChange} className="card_button_answer">
-          <h3 className="card_translation">{translation}</h3>
-
-          <p className="card_theme">#{theme}</p>
+          <div>
+            <h3 className="card_translation">{translation}</h3>
+            <p className="card_theme">#{theme}</p>
+          </div>
         </button>
       ) : (
         <button className="card_button" onClick={handleChange}>
@@ -31,5 +26,12 @@ function Wordcard(props) {
     </div>
   );
 }
+
+Wordcard.defaultProps = {
+  name: "word",
+  transcription: "[wɜːd]",
+  translation: "слово",
+  theme: "",
+};
 
 export default Wordcard;

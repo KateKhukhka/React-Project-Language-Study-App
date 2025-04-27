@@ -1,12 +1,12 @@
 import "./App.css";
-import Header from "./components/header";
+import Header from "./components/common/header";
 import NavBar from "./components/navBar";
 import CardContent from "./components/cardContent";
-import Footer from "./components/footer";
+import Footer from "./components/common/footer";
 import WordsTable from "./components/wordsTable";
-import Missing from "./components/missing";
+import Missing from "./components/common/missing";
 import "./components/css/buttons.css";
-import cardData from "./components/cardData";
+import cardData from "./cardData";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {

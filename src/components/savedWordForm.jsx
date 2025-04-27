@@ -9,20 +9,18 @@ function AddedWordForm(props) {
   //редактирование не реализовано до конца
 
   return (
-    <tbody>
-      <tr>
-        <td className="form_text-english added_word">{english}world</td>
-        <td className="form_text-transcription added_word">{transcription}[wз:ld]</td>
-        <td className="form_text-russian added_word">{russian}мир</td>
-        <td className="form_text-tags added_word">{tags}world</td>
-        <td>
-          <button className="btn_word_edit" type="button">
-            Edit
-          </button>
-          <button className="btn_word_del">Delete</button>
-        </td>
-      </tr>
-    </tbody>
+    <tr>
+      <td className="form_text-english added_word">{english}</td>
+      <td className="form_text-transcription added_word">{transcription}</td>
+      <td className="form_text-russian added_word">{russian}</td>
+      <td className="form_text-tags added_word">{tags}</td>
+      <td>
+        <button className="btn_word_edit" type="button">
+          Edit
+        </button>
+        <button className="btn_word_del">Delete</button>
+      </td>
+    </tr>
   );
 }
 export default AddedWordForm;
