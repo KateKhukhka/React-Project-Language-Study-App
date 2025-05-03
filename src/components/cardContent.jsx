@@ -6,6 +6,11 @@ function CardContent(props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const cardData = props.cardData;
 
+  const [wordCount, setWordCount] = useState(0);
+  const countProgress = () => {
+    setWordCount(wordCount + 1);
+  };
+
   function nextSlide() {
     setCurrentIndex((prevIndex) => (prevIndex === cardData.length - 1 ? 0 : prevIndex + 1));
   }
@@ -16,6 +21,7 @@ function CardContent(props) {
 
   return (
     <main>
+      <div className="counter">Progress: {wordCount} words</div>
       <div className="carousel_wrapper">
         <button className="carousel_button prev" onClick={prevSlide}>
           &#10094;
@@ -23,7 +29,7 @@ function CardContent(props) {
 
         {cardData.map((item, index) => {
           return (
-            <div key={item.id} className={index === currentIndex ? "carousel_slide active_slide" : "carousel_slide"}>
+            <div className={index === currentIndex ? "carousel_slide active_slide" : "carousel_slide"}>
               <Wordcard
                 index={index}
                 key={item.id}
@@ -31,6 +37,7 @@ function CardContent(props) {
                 transcription={item.transcription}
                 translation={item.russian}
                 theme={item.tags}
+                handleChangeProgress={countProgress}
               />
             </div>
           );

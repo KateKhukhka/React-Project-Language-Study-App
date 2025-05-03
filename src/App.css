@@ -15,6 +15,16 @@
   min-width: 180px;
   margin: auto;
 }
+.counter {
+  margin: auto;
+  margin-bottom: 20px;
+  max-width: 200px;
+  border-radius: 10px;
+  padding: 10px;
+  background: rgb(216, 201, 216);
+  color: rgb(65, 7, 65);
+  font-weight: 600;
+}
 header {
   display: flex;
   justify-content: center;

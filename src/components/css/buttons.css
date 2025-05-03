@@ -10,18 +10,24 @@ button {
 .card_button:hover,
 button:hover {
   transform: scale(0.95);
-  transform: transform 0.8s;
+  transition: transform 0.2s ease-in;
 }
 button:disabled {
   transform: none;
   cursor: not-allowed;
 }
+.card_button:focus {
+  outline: 1px solid rgb(65, 7, 65);
+}
 .card_button_answer {
   background-color: rgb(216, 201, 216);
-  margin: none;
+  margin: 0;
 }
 .card_button_answer:hover {
   transform: none;
+}
+.card_button_answer:focus {
+  outline: none;
 }
 .btn_word_del {
   background-color: rgb(250, 140, 140);

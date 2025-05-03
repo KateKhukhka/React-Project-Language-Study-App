@@ -1,27 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 function Wordcard(props) {
-  const { name, transcription, translation, theme } = props;
+  const { name, transcription, translation, theme, handleChangeProgress } = props;
+
   const [flipped, setFlipped] = useState(false);
+
   const handleChange = () => {
     setFlipped(!flipped);
+    handleChangeProgress();
   };
+
+  const buttonRef = useRef();
+  useEffect(() => {
+    buttonRef.current.focus();
+  }, []);
+
   return (
     <div className="card">
-      <h3 className="card_name">{name}</h3>
-      <p className="card_transcription">{transcription}</p>
-
       {flipped ? (
-        <button onClick={handleChange} className="card_button_answer">
-          <div>
-            <h3 className="card_translation">{translation}</h3>
-            <p className="card_theme">#{theme}</p>
-          </div>
-        </button>
+        <div onClick={handleChange} className="card_answer">
+          <h3 className="card_name">{name}</h3>
+          <p className="card_transcription">{transcription}</p>
+          <h3 className="card_translation">{translation}</h3>
+          <p className="card_theme">#{theme}</p>
+        </div>
       ) : (
-        <button className="card_button" onClick={handleChange}>
-          click me
-        </button>
+        <div>
+          <h3 className="card_name">{name}</h3>
+          <p className="card_transcription">{transcription}</p>
+          <button ref={buttonRef} className="card_button" onClick={handleChange}>
+            click me
+          </button>
+        </div>
       )}
     </div>
   );
