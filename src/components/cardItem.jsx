@@ -12,8 +12,10 @@ function Wordcard(props) {
 
   const buttonRef = useRef();
   useEffect(() => {
-    buttonRef.current.focus();
-  }, []);
+    if (buttonRef.current) {
+      buttonRef.current.focus();
+    }
+  });
 
   return (
     <div className="card">
