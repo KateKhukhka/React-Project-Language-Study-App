@@ -68,6 +68,18 @@ function AddNewWordForm() {
     setWords(updatedWords);
   };
 
+  //редактирование слова
+  const editWord = (id, field, e) => {
+    setWords(
+      words.map((item) => {
+        if (item.id === id) {
+          item[field] = e.target.value;
+        }
+        return item;
+      })
+    );
+  };
+
   return (
     <tbody>
       <tr>
@@ -134,11 +146,13 @@ function AddNewWordForm() {
         return (
           <AddedWordForm
             key={item.id}
+            id={item.id}
             english={item.english}
             transcription={item.transcription}
             russian={item.russian}
             tags={item.tags}
             clickDelete={() => clickDelete(item.id)}
+            editWord={editWord}
           />
         );
       })}

@@ -1,59 +1,15 @@
 import { useState } from "react";
 
 function AddedWordForm(props) {
-  const { english, transcription, russian, tags, clickDelete, words, setWords } = props;
-  const [editRow, setEditRow] = useState(false);
-  const [editValueEnglish, setEditValueEnglish] = useState(english);
-  const [editValueTranscription, setEditValueTranscription] = useState(transcription);
-  const [editValueRussian, setEditValueRussian] = useState(russian);
-  const [editValueTags, setEditValueTags] = useState(tags);
+  const { id, english, transcription, russian, tags, clickDelete, editWord } = props;
 
-  //  const [wordEdit, setWordEdit] = useState(words);
+  //состояние режима редактирования
+  const [editRow, setEditRow] = useState(false);
 
   //открытие режима редактирования при клике "edit"
-  const clickEdit = () => {
+  //и сброс режима редактирования c сохранением в таблицу при клике "save"
+  const onChangeEdit = () => {
     setEditRow(!editRow);
-  };
-
-  // сброс значений всех полей
-  // const clickResetEdited = () => {
-  //   setEditValueEnglish("");
-  //   setEditValueRussian("");
-  //   setEditValueTranscription("");
-  //   setEditValueTags("");
-  //  };
-
-  //сброс режима редактирования
-  const clickResetEdit = () => {
-    setEditRow(!editRow);
-  };
-
-  //замена слова на отредактированное (в стадии разработки)
-  const clickSaveEdited = (id) => {
-    //const editWord = {
-    //   id: id,
-    //   english: editValueEnglish,
-    //   transcription: editValueTranscription,
-    //    russian: editValueRussian,
-    //   tags: editValueTags,
-    //  };
-    //с помощью мар нужно перебрать ид в массиве и заменить значения на отредактированные (!!!!!!!!!)
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! часть в работе !!!!!!!!!!!!
-    //  console.log(editWord);
-    //console.log(id);
-    //  setWords((words) => words.map((word) => (word.id === id ? { ...word, [field]: value } : word)));
-    //console.log([field]);
-    //    words.map((item) => {
-    //      //if (item.id === item.id) {
-    //     if (editValueEnglish) item.english.value = item.editValueEnglish.value;
-    //      if (editValueTranscription) item.transcription.value = item.editValueTranscription.value;
-    //     if (editValueRussian) item.russian.value = item.editValueRussian.value;
-    //     if (editValueTags) item.tags.value = item.editValueTags.value;
-    //  }
-    //return
-    //setWords(words);
-    //   }
-    // );
   };
 
   return !editRow ? (
@@ -63,7 +19,7 @@ function AddedWordForm(props) {
       <td className="form_text-russian added_word">{russian}</td>
       <td className="form_text-tags added_word">{tags}</td>
       <td>
-        <button className="btn_word_edit" type="button" onClick={clickEdit}>
+        <button className="btn_word_edit" type="button" onClick={onChangeEdit}>
           Edit
         </button>
         <button className="btn_word_del" type="button" onClick={clickDelete}>
@@ -77,8 +33,8 @@ function AddedWordForm(props) {
         <input
           className={"form_input-english"}
           type="text"
-          value={editValueEnglish}
-          onChange={({ target: { value } }) => setEditValueEnglish(value, "english")}
+          value={english}
+          onChange={(e) => editWord(id, "english", e)}
           required
         />
       </td>
@@ -86,8 +42,8 @@ function AddedWordForm(props) {
         <input
           className={"form_input-transcription"}
           type="text"
-          value={editValueTranscription}
-          onChange={({ target: { value } }) => setEditValueTranscription(value)}
+          value={transcription}
+          onChange={(e) => editWord(id, "transcription", e)}
           required
         />
       </td>
@@ -95,8 +51,8 @@ function AddedWordForm(props) {
         <input
           className={"form_input-russian"}
           type="text"
-          value={editValueRussian}
-          onChange={({ target: { value } }) => setEditValueRussian(value)}
+          value={russian}
+          onChange={(e) => editWord(id, "russian", e)}
           required
         />
       </td>
@@ -105,8 +61,8 @@ function AddedWordForm(props) {
           className={"form_input-tags"}
           required
           type="text"
-          value={editValueTags}
-          onChange={({ target: { value } }) => setEditValueTags(value)}
+          value={tags}
+          onChange={(e) => editWord(id, "tags", e)}
         />
       </td>
       <td>
@@ -114,18 +70,12 @@ function AddedWordForm(props) {
           type="button"
           className="btn_word_save"
           disabled={!english && !transcription && !russian && !tags}
-          //onClick={clickSaveEdited}
-          onClick={clickSaveEdited}
+          onClick={onChangeEdit}
         >
           Save
         </button>
-        <button
-          className="btn_word_cancel"
-          type="reset"
-          disabled={!english && !transcription && !russian && !tags}
-          onClick={clickResetEdit}
-        >
-          Cancel
+        <button className="btn_word_del" type="button" onClick={clickDelete}>
+          Delete
         </button>
       </td>
     </tr>
