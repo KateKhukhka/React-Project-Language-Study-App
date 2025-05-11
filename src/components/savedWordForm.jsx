@@ -7,9 +7,28 @@ function AddedWordForm(props) {
   const [editRow, setEditRow] = useState(false);
 
   //открытие режима редактирования при клике "edit"
-  //и сброс режима редактирования c сохранением в таблицу при клике "save"
-  const onChangeEdit = () => {
+  const clickEdit = () => {
     setEditRow(!editRow);
+  };
+
+  //сброс режима редактирования и сохранение в таблицу при отсутствии пустых полей (клик "save")
+  //также сюда можно добавить доп проверки на корректность заполнения полей,
+  //а также выводить разные уведомления в зависимости от характера ошибки
+  const clickEditedSave = () => {
+    if (
+      english !== "" &&
+      transcription !== "" &&
+      russian !== "" &&
+      tags !== "" &&
+      english.match(/[a-z]/i) &&
+      russian.match(/[а-я]/i) &&
+      tags.match(/[a-z]/i)
+    ) {
+      setEditRow(!editRow);
+      console.log({ id: id, english: english, transcription: transcription, russian: russian, tags: tags });
+    } else {
+      alert("fill all required fields and check that all information is correct, please");
+    }
   };
 
   return !editRow ? (
@@ -19,7 +38,7 @@ function AddedWordForm(props) {
       <td className="form_text-russian added_word">{russian}</td>
       <td className="form_text-tags added_word">{tags}</td>
       <td>
-        <button className="btn_word_edit" type="button" onClick={onChangeEdit}>
+        <button className="btn_word_edit" type="button" onClick={clickEdit}>
           Edit
         </button>
         <button className="btn_word_del" type="button" onClick={clickDelete}>
@@ -70,7 +89,7 @@ function AddedWordForm(props) {
           type="button"
           className="btn_word_save"
           disabled={!english && !transcription && !russian && !tags}
-          onClick={onChangeEdit}
+          onClick={clickEditedSave}
         >
           Save
         </button>

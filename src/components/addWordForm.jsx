@@ -43,7 +43,7 @@ function AddNewWordForm() {
       //предупреждение о необходимости заполнить все поля при ошибке
       setErrorText("fill all required fields, please");
 
-      //появление красного бордера у инпутов
+      //появление красного бордера у пустых инпутов
       english !== "" ? setErrorEnglish(false) : setErrorEnglish(true);
       transcription !== "" ? setErrorTranscription(false) : setErrorTranscription(true);
       russian !== "" ? setErrorRussian(false) : setErrorRussian(true);
