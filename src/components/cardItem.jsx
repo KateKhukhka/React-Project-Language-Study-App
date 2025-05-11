@@ -3,19 +3,35 @@ import React, { useState, useRef, useEffect } from "react";
 function Wordcard(props) {
   const { name, transcription, translation, theme, handleChangeProgress } = props;
 
+  //состояние для открытия перевода слова
   const [flipped, setFlipped] = useState(false);
 
-  const handleChange = () => {
-    setFlipped(!flipped);
+  //открытие перевода при нажатии на кнопку
+  const handleChange = React.useCallback(() => {
+    setFlipped((prev) => !prev);
     handleChangeProgress();
-  };
+  }, [handleChangeProgress]);
 
+  //первая версия handleChange без useCallback:
+  // const handleChange = () => {
+  //    setFlipped(!flipped);
+  //    handleChangeProgress();
+  //  };
+
+  //фокусировка на кнопке каждой карточки (версия вторая, но фокус не работает при перелистывании)
   const buttonRef = useRef();
   useEffect(() => {
     if (buttonRef.current) {
       buttonRef.current.focus();
     }
-  });
+  }, [flipped]);
+
+  //первая версия фокусировке на кнопке каждой карточки при рендере (некорректно, но работало):
+  //  useEffect(() => {
+  //    if (buttonRef.current) {
+  //      buttonRef.current.focus();
+  //    }
+  //  });
 
   return (
     <div className="card">

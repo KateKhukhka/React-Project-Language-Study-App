@@ -20,3 +20,11 @@ input {
   margin: 5px;
   border: none;
 }
+.form_input-error {
+  border: 1px solid red;
+}
+.form_input-error-text {
+  font-size: 12px;
+  color: red;
+  padding-bottom: 5px;
+}

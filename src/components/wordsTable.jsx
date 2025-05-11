@@ -2,13 +2,7 @@ import AddNewWordForm from "./addWordForm";
 //import AddedWordForm from "./savedWordForm";
 import "./css/words_table.css";
 
-//import React, { useState } from "react";
-
 function WordsTable() {
-  // const [addedWord, setAddedWord] = useState(false);
-  // const handleChange = () => {
-  //   setAddedWord(!addedWord);
-  // };
 
   return (
     <main>

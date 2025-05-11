@@ -6,15 +6,18 @@ function CardContent(props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const cardData = props.cardData;
 
+  //счет при нажатии на кнопку просмотра перевода
   const [wordCount, setWordCount] = useState(0);
   const countProgress = () => {
     setWordCount(wordCount + 1);
   };
 
-  function nextSlide() {
+  //перелистывание карточек при нажатии правой кнопки
+  const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === cardData.length - 1 ? 0 : prevIndex + 1));
-  }
-
+    
+  };
+  //перелистывание карточек при нажатии левой кнопки
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? cardData.length - 1 : prevIndex - 1));
   };
@@ -29,10 +32,9 @@ function CardContent(props) {
 
         {cardData.map((item, index) => {
           return (
-            <div className={index === currentIndex ? "carousel_slide active_slide" : "carousel_slide"}>
+            <div key={item.id} className={index === currentIndex ? "carousel_slide active_slide" : "carousel_slide"}>
               <Wordcard
                 index={index}
-                key={item.id}
                 name={item.english}
                 transcription={item.transcription}
                 translation={item.russian}
