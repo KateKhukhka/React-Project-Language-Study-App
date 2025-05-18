@@ -1,7 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 
 function Wordcard(props) {
-  const { name, transcription, translation, theme, handleChangeProgress, currentWord } = props;
+  const {
+    name = "not found",
+    transcription = "[not found]",
+    translation = "не найден",
+    theme = "",
+    handleChangeProgress,
+    currentWord,
+  } = props;
 
   //состояние для открытия перевода слова
   const [flipped, setFlipped] = useState(false);
@@ -18,7 +25,7 @@ function Wordcard(props) {
   //    handleChangeProgress();
   //  };
 
-  //фокусировка на кнопке каждой карточки (версия вторая, но фокус не работает при перелистывании)
+  //фокусировка на кнопке каждой карточки
   const buttonRef = useRef();
   useEffect(() => {
     if (buttonRef.current) {
@@ -47,12 +54,5 @@ function Wordcard(props) {
     </div>
   );
 }
-
-Wordcard.defaultProps = {
-  name: "word",
-  transcription: "[wɜːd]",
-  translation: "слово",
-  theme: "",
-};
 
 export default Wordcard;
