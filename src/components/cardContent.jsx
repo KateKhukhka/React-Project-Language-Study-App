@@ -15,7 +15,6 @@ function CardContent(props) {
   //перелистывание карточек при нажатии правой кнопки
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === cardData.length - 1 ? 0 : prevIndex + 1));
-    
   };
   //перелистывание карточек при нажатии левой кнопки
   const prevSlide = () => {
@@ -34,6 +33,7 @@ function CardContent(props) {
           return (
             <div key={item.id} className={index === currentIndex ? "carousel_slide active_slide" : "carousel_slide"}>
               <Wordcard
+                currentWord={currentIndex}
                 index={index}
                 name={item.english}
                 transcription={item.transcription}

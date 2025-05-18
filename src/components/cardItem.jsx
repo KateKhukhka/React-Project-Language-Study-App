@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
 function Wordcard(props) {
-  const { name, transcription, translation, theme, handleChangeProgress } = props;
+  const { name, transcription, translation, theme, handleChangeProgress, currentWord } = props;
 
   //состояние для открытия перевода слова
   const [flipped, setFlipped] = useState(false);
@@ -24,14 +24,7 @@ function Wordcard(props) {
     if (buttonRef.current) {
       buttonRef.current.focus();
     }
-  }, [flipped]);
-
-  //первая версия фокусировке на кнопке каждой карточки при рендере (некорректно, но работало):
-  //  useEffect(() => {
-  //    if (buttonRef.current) {
-  //      buttonRef.current.focus();
-  //    }
-  //  });
+  }, [currentWord, flipped]);
 
   return (
     <div className="card">
