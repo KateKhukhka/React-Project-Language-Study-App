@@ -1,10 +1,13 @@
-import { useState } from "react";
-import cardData from "../cardData";
+import { useState, useContext } from "react";
+//import cardData from "../cardData";
 import AddedWordForm from "./savedWordForm";
+import { WordsContext } from "../App";
+//import { DataContext } from "./context";
 
 function AddNewWordForm() {
   //массив слов
-  const [words, setWords] = useState(cardData);
+  //const [words, setWords] = useState(cardData);
+  const { words, setWords } = useContext(WordsContext);
 
   //состояния в инпутах
   const [english, setEnglish] = useState("");
@@ -60,7 +63,7 @@ function AddNewWordForm() {
   };
 
   //проверка данных массива
-  console.log(words);
+  //console.log(words);
 
   //удаление слова по id при нажатии кнопки "delete"
   const clickDelete = (id) => {

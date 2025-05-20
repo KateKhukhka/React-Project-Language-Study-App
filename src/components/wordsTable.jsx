@@ -3,7 +3,6 @@ import AddNewWordForm from "./addWordForm";
 import "./css/words_table.css";
 
 function WordsTable() {
-
   return (
     <main>
       <form className="add_word_form">

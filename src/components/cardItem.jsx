@@ -1,14 +1,27 @@
 import React, { useState, useRef, useEffect } from "react";
 
+//import { WordsContext } from "../App";
+
 function Wordcard(props) {
   const {
-    name = "not found",
-    transcription = "[not found]",
-    translation = "не найден",
-    theme = "",
+    name,
+    transcription,
+    translation,
+    theme,
+    //name = "not found",
+    //transcription = "[not found]",
+    //translation = "не найден",
+    //theme = "",
     handleChangeProgress,
     currentWord,
   } = props;
+
+  //nst words = useContext(WordsContext);
+  // console.log(words.english);
+  //const name = words.english;
+  //const transcription = words.transcription;
+  // const translation = words.russian;
+  // const theme = words.tags;
 
   //состояние для открытия перевода слова
   const [flipped, setFlipped] = useState(false);
