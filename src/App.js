@@ -9,6 +9,8 @@ import "./components/css/buttons.css";
 //import cardData from "./cardData";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import Loading from "./components/common/loading";
+
 //import { DataContextProvider } from "./components/context";
 
 import { useState, createContext, useEffect } from "react";
@@ -18,6 +20,7 @@ const WordsContext = createContext();
 function App() {
   //const [words, setWords] = useState(cardData);
   let [words, setWords] = useState([]);
+  const [loading, setLoading] = useState(true);
   console.log(words);
 
   const [error, setError] = useState(null);
@@ -30,9 +33,9 @@ function App() {
           throw new Error("Something went wrong ...");
         }
       })
-      .then((response) => {
-        setWords((words = response));
-        //setLoading(false);
+      .then((data) => {
+        setWords(data);
+        setLoading(false);
       })
       .catch((error) => setError(error));
   }, []);
@@ -44,13 +47,18 @@ function App() {
           <Header />
           <NavBar />
           <Routes>
-            <Route path="/" element={<WordsTable />} />
+            <Route path="/" element={loading ? <Loading /> : <WordsTable />} />
             <Route
               path="/game"
               element={
-                <CardContent
-                //cardData={cardData}
-                />
+                loading ? (
+                  <Loading />
+                ) : (
+                  //<h1>LOADING...</h1>
+                  <CardContent
+                  //cardData={cardData}
+                  />
+                )
               }
             />
             <Route path="*" element={<Missing />} />

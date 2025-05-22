@@ -29,8 +29,28 @@ function AddNewWordForm() {
       const id = Date.now();
 
       //создание и добавление нового слова в массив
-      const newWord = { id, english, transcription, russian, tags };
-      setWords([newWord, ...words]);
+      const tags_json = "";
+      const newWord = { id, english, transcription, russian, tags, tags_json };
+      //setWords([newWord, ...words]);
+
+      console.log(words);
+      console.log(newWord);
+
+      //добавление слова на сервер
+      fetch("http://itgirlschool.justmakeit.ru/api/words/add", {
+        method: "POST",
+        body: JSON.stringify(newWord), //Тело запроса в JSON-формате
+        headers: {
+          //Добавляем необходимые заголовки
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          setWords([newWord, ...words]);
+        });
 
       //очистка инпутов и сброс ошибок после сохранения нового слова
       setEnglish("");
