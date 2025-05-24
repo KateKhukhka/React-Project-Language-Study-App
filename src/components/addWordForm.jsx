@@ -88,7 +88,21 @@ function AddNewWordForm() {
   //удаление слова по id при нажатии кнопки "delete"
   const clickDelete = (id) => {
     const updatedWords = words.filter((item) => item.id !== id);
-    setWords(updatedWords);
+    //setWords(updatedWords);
+    //удаление отредактированного слова на сервере
+    fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/delete`, {
+      method: "POST",
+      body: JSON.stringify(updatedWords),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setWords(updatedWords);
+      });
   };
 
   //редактирование слова
@@ -174,6 +188,7 @@ function AddNewWordForm() {
             transcription={item.transcription}
             russian={item.russian}
             tags={item.tags}
+            tags_json={item.tags_json}
             clickDelete={() => clickDelete(item.id)}
             editWord={editWord}
           />

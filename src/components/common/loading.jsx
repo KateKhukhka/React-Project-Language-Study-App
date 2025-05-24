@@ -1,4 +1,10 @@
+import "./loading.css";
 function Loading() {
-  return <p className="loading">LOADING...</p>;
+  return (
+    <>
+      <p className="loading">Loading...</p>
+      <div class="cssload-spin-box"></div>
+    </>
+  );
 }
 export default Loading;
