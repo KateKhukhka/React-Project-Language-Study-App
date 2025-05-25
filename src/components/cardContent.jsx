@@ -2,23 +2,28 @@ import Wordcard from "./cardItem";
 import { useState, useContext } from "react";
 import "./css/carousel.css";
 
-//import { DataContext } from "./context";
-
 import { WordsContext } from "../App";
 
-//function CardContent(props)
 function CardContent() {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  //const cardData = props.cardData;
 
   const { words } = useContext(WordsContext);
 
   //счет при нажатии на кнопку просмотра перевода
   const [wordCount, setWordCount] = useState(0);
-  const countProgress = () => {
+  const countProgress = (id) => {
     setWordCount(wordCount + 1);
   };
+
+  //работа над ошибками - создание сета изученных слов (в работе)
+  // const [studiedWords, setStudiedWords] = useState(new Set());
+  //  const studiedProgress = (wordId) => {
+  //   setStudiedWords((prev) => {
+  //   const newSet = new Set(prev);
+  //    newSet.add(wordId);
+  //    return console.log(wordId);
+  //  });
+  //  };
 
   //перелистывание карточек при нажатии правой кнопки
   const nextSlide = () => {

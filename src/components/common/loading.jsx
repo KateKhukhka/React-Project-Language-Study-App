@@ -3,7 +3,7 @@ function Loading() {
   return (
     <>
       <p className="loading">Loading...</p>
-      <div class="cssload-spin-box"></div>
+      <div className="cssload-spin-box"></div>
     </>
   );
 }

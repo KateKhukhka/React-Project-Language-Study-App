@@ -1,21 +1,20 @@
 import { useState, useContext } from "react";
-//import cardData from "../cardData";
 import AddedWordForm from "./savedWordForm";
 import { WordsContext } from "../App";
-//import { DataContext } from "./context";
 
 function AddNewWordForm() {
   //массив слов
-  //const [words, setWords] = useState(cardData);
   const { words, setWords } = useContext(WordsContext);
 
   //состояния в инпутах
+  //const [formData, setFormData] = useState({ english: "", transcription: "", tags: "", russian: "" });
   const [english, setEnglish] = useState("");
   const [transcription, setTranscription] = useState("");
   const [tags, setTags] = useState("");
   const [russian, setRussian] = useState("");
 
   //состояния ошибок при отсутствии текста в инпутах
+  //const [errors, setErrors] = useState({english: false, transcription: false, russian: false, tags: false})
   const [errorEnglish, setErrorEnglish] = useState(false);
   const [errorTranscription, setErrorTranscription] = useState(false);
   const [errorRussian, setErrorRussian] = useState(false);
@@ -24,24 +23,25 @@ function AddNewWordForm() {
 
   //сохранение нового слова или ошибка при нажатии кнопки "save"
   const clickSave = () => {
-    if (english !== "" && transcription !== "" && russian !== "" && tags !== "") {
+    if (
+      //formData !== ""
+      english !== "" &&
+      transcription !== "" &&
+      russian !== "" &&
+      tags !== ""
+    ) {
       //создание id для новых слов
       const id = Date.now();
 
       //создание и добавление нового слова в массив
       const tags_json = "";
       const newWord = { id, english, transcription, russian, tags, tags_json };
-      //setWords([newWord, ...words]);
-
-      console.log(words);
-      console.log(newWord);
 
       //добавление слова на сервер
       fetch("http://itgirlschool.justmakeit.ru/api/words/add", {
         method: "POST",
-        body: JSON.stringify(newWord), //Тело запроса в JSON-формате
+        body: JSON.stringify(newWord),
         headers: {
-          //Добавляем необходимые заголовки
           "Content-type": "application/json; charset=UTF-8",
         },
       })
@@ -53,6 +53,8 @@ function AddNewWordForm() {
         });
 
       //очистка инпутов и сброс ошибок после сохранения нового слова
+      //setFormData("");
+      //setErrors(false);
       setEnglish("");
       setTranscription("");
       setTags("");
@@ -76,6 +78,7 @@ function AddNewWordForm() {
 
   //сброс введенных значений во всех инпутах при нажатии кнопки "reset"
   const clickReset = () => {
+    //setFormData("");
     setEnglish("");
     setTranscription("");
     setTags("");
@@ -88,7 +91,7 @@ function AddNewWordForm() {
   //удаление слова по id при нажатии кнопки "delete"
   const clickDelete = (id) => {
     const updatedWords = words.filter((item) => item.id !== id);
-    //setWords(updatedWords);
+
     //удаление отредактированного слова на сервере
     fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/delete`, {
       method: "POST",

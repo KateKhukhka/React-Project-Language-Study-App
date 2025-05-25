@@ -1,27 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 
-//import { WordsContext } from "../App";
-
 function Wordcard(props) {
   const {
-    name,
-    transcription,
-    translation,
-    theme,
-    //name = "not found",
-    //transcription = "[not found]",
-    //translation = "не найден",
-    //theme = "",
+    name = "not found",
+    transcription = "[not found]",
+    translation = "не найден",
+    theme = "",
     handleChangeProgress,
-    currentWord,
+    currentWord
   } = props;
-
-  //nst words = useContext(WordsContext);
-  // console.log(words.english);
-  //const name = words.english;
-  //const transcription = words.transcription;
-  // const translation = words.russian;
-  // const theme = words.tags;
 
   //состояние для открытия перевода слова
   const [flipped, setFlipped] = useState(false);
@@ -29,8 +16,10 @@ function Wordcard(props) {
   //открытие перевода при нажатии на кнопку
   const handleChange = React.useCallback(() => {
     setFlipped((prev) => !prev);
-    handleChangeProgress();
-  }, [handleChangeProgress]);
+    if (!flipped) {
+      handleChangeProgress();
+    }
+  }, [flipped, handleChangeProgress]);
 
   //первая версия handleChange без useCallback:
   // const handleChange = () => {

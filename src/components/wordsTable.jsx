@@ -1,5 +1,4 @@
 import AddNewWordForm from "./addWordForm";
-//import AddedWordForm from "./savedWordForm";
 import "./css/words_table.css";
 
 function WordsTable() {

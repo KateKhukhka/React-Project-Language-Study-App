@@ -6,24 +6,21 @@ import Footer from "./components/common/footer";
 import WordsTable from "./components/wordsTable";
 import Missing from "./components/common/missing";
 import "./components/css/buttons.css";
-//import cardData from "./cardData";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import Loading from "./components/common/loading";
-
-//import { DataContextProvider } from "./components/context";
+import Error from "./components/common/error";
 
 import { useState, createContext, useEffect } from "react";
-//const WordsContext = createContext();
+
+//создание контекста
 const WordsContext = createContext();
 
 function App() {
-  //const [words, setWords] = useState(cardData);
   let [words, setWords] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(words);
-
   const [error, setError] = useState(null);
+
+  //получение данных с сервера
   useEffect(() => {
     fetch("http://itgirlschool.justmakeit.ru/api/words")
       .then((response) => {
@@ -47,20 +44,8 @@ function App() {
           <Header />
           <NavBar />
           <Routes>
-            <Route path="/" element={loading ? <Loading /> : <WordsTable />} />
-            <Route
-              path="/game"
-              element={
-                loading ? (
-                  <Loading />
-                ) : (
-                  //<h1>LOADING...</h1>
-                  <CardContent
-                  //cardData={cardData}
-                  />
-                )
-              }
-            />
+            <Route path="/" element={error ? <Error /> : loading ? <Loading /> : <WordsTable />} />
+            <Route path="/game" element={error ? <Error /> : loading ? <Loading /> : <CardContent />} />
             <Route path="*" element={<Missing />} />
           </Routes>
           <Footer />
@@ -71,4 +56,3 @@ function App() {
 }
 
 export { WordsContext, App };
-//export default App;
