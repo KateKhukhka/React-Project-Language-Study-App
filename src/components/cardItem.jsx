@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 
 function Wordcard(props) {
   const {
@@ -7,11 +7,13 @@ function Wordcard(props) {
     translation = "не найден",
     theme = "",
     handleChangeProgress,
-    currentWord
+    currentWord,
+    flipped,
+    setFlipped,
   } = props;
 
   //состояние для открытия перевода слова
-  const [flipped, setFlipped] = useState(false);
+  //const [flipped, setFlipped] = useState(false);
 
   //открытие перевода при нажатии на кнопку
   const handleChange = React.useCallback(() => {
@@ -19,7 +21,7 @@ function Wordcard(props) {
     if (!flipped) {
       handleChangeProgress();
     }
-  }, [flipped, handleChangeProgress]);
+  }, [flipped, setFlipped, handleChangeProgress]);
 
   //первая версия handleChange без useCallback:
   // const handleChange = () => {

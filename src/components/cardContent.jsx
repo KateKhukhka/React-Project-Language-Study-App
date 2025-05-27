@@ -7,6 +7,9 @@ import { WordsContext } from "../App";
 function CardContent() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  //состояние для открытия перевода слова
+  const [flipped, setFlipped] = useState(false);
+
   const { words } = useContext(WordsContext);
 
   //счет при нажатии на кнопку просмотра перевода
@@ -28,10 +31,12 @@ function CardContent() {
   //перелистывание карточек при нажатии правой кнопки
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === words.length - 1 ? 0 : prevIndex + 1));
+    setFlipped(false);
   };
   //перелистывание карточек при нажатии левой кнопки
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? words.length - 1 : prevIndex - 1));
+    setFlipped(false);
   };
 
   return (
@@ -52,6 +57,8 @@ function CardContent() {
                 translation={word.russian}
                 theme={word.tags}
                 handleChangeProgress={countProgress}
+                flipped={flipped}
+                setFlipped={setFlipped}
               />
             </div>
           );
