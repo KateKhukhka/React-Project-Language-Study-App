@@ -5,28 +5,25 @@ import "./css/carousel.css";
 import { WordsContext } from "../App";
 
 function CardContent() {
+  //состояние текущей карточки для карусели
   const [currentIndex, setCurrentIndex] = useState(0);
 
   //состояние для открытия перевода слова
   const [flipped, setFlipped] = useState(false);
 
+  //получение массива слов из контекста
   const { words } = useContext(WordsContext);
 
-  //счет при нажатии на кнопку просмотра перевода
-  const [wordCount, setWordCount] = useState(0);
-  const countProgress = (id) => {
-    setWordCount(wordCount + 1);
+  //создание сета изученных слов, счет при нажатии на кнопку просмотра перевода
+  const [studiedWords, setStudiedWords] = useState(new Set());
+  const studiedProgress = (id) => {
+    setStudiedWords((prev) => {
+      const newSet = new Set(prev);
+      newSet.add(id);
+      return newSet;
+    });
   };
-
-  //работа над ошибками - создание сета изученных слов (в работе)
-  // const [studiedWords, setStudiedWords] = useState(new Set());
-  //  const studiedProgress = (wordId) => {
-  //   setStudiedWords((prev) => {
-  //   const newSet = new Set(prev);
-  //    newSet.add(wordId);
-  //    return console.log(wordId);
-  //  });
-  //  };
+  const studiedWordsCount = studiedWords.size;
 
   //перелистывание карточек при нажатии правой кнопки
   const nextSlide = () => {
@@ -41,11 +38,12 @@ function CardContent() {
 
   return (
     <main>
-      <div className="counter">Progress: {wordCount} words</div>
+      <div className="counter">Progress: {studiedWordsCount} words</div>
       <div className="carousel_wrapper">
         <button className="carousel_button prev" onClick={prevSlide}>
           &#10094;
         </button>
+
         {words.map((word, index) => {
           return (
             <div key={word.id} className={index === currentIndex ? "carousel_slide active_slide" : "carousel_slide"}>
@@ -56,9 +54,10 @@ function CardContent() {
                 transcription={word.transcription}
                 translation={word.russian}
                 theme={word.tags}
-                handleChangeProgress={countProgress}
+                handleChangeProgress={studiedProgress}
                 flipped={flipped}
                 setFlipped={setFlipped}
+                id={word.id}
               />
             </div>
           );

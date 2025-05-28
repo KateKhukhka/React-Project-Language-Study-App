@@ -10,6 +10,7 @@ function Wordcard(props) {
     currentWord,
     flipped,
     setFlipped,
+    id,
   } = props;
 
   //состояние для открытия перевода слова
@@ -19,9 +20,9 @@ function Wordcard(props) {
   const handleChange = React.useCallback(() => {
     setFlipped((prev) => !prev);
     if (!flipped) {
-      handleChangeProgress();
+      handleChangeProgress(id);
     }
-  }, [flipped, setFlipped, handleChangeProgress]);
+  }, [id, flipped, setFlipped, handleChangeProgress]);
 
   //первая версия handleChange без useCallback:
   // const handleChange = () => {
