@@ -8,16 +8,18 @@ function Wordcard(props) {
     theme = "",
     handleChangeProgress,
     currentWord,
+    flipped,
+    setFlipped,
+    id,
   } = props;
-
-  //состояние для открытия перевода слова
-  const [flipped, setFlipped] = useState(false);
 
   //открытие перевода при нажатии на кнопку
   const handleChange = React.useCallback(() => {
     setFlipped((prev) => !prev);
-    handleChangeProgress();
-  }, [handleChangeProgress]);
+    if (!flipped) {
+      handleChangeProgress(id);
+    }
+  }, [id, flipped, setFlipped, handleChangeProgress]);
 
   //первая версия handleChange без useCallback:
   // const handleChange = () => {

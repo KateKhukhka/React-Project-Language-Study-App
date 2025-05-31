@@ -1,4 +1,4 @@
-import imgLogo from "../assets/logo.jpg";
+import imgLogo from "../../assets/logo.jpg";
 import { Link } from "react-router-dom";
 
 function Header() {

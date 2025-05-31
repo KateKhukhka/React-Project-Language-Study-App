@@ -26,7 +26,9 @@ function AddNewWordForm() {
       const id = Date.now();
 
       //создание и добавление нового слова в массив
-      const newWord = { id, english, transcription, russian, tags };
+      const tags_json = "";
+      const newWord = { id, english, transcription, russian, tags, tags_json };
+
       setWords([newWord, ...words]);
 
       //очистка инпутов и сброс ошибок после сохранения нового слова
@@ -151,6 +153,7 @@ function AddNewWordForm() {
             transcription={item.transcription}
             russian={item.russian}
             tags={item.tags}
+            tags_json={item.tags_json}
             clickDelete={() => clickDelete(item.id)}
             editWord={editWord}
           />

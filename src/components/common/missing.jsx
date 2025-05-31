@@ -1,4 +1,4 @@
-import MissingImg from "../assets/404.png";
+import MissingImg from "../../assets/404.png";
 function Missing() {
   return (
     <main className="missing_page">

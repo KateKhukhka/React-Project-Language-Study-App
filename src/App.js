@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./components/common/header";
-import NavBar from "./components/navBar";
+import NavBar from "./components/common/navBar";
 import CardContent from "./components/cardContent";
 import Footer from "./components/common/footer";
 import WordsTable from "./components/wordsTable";
