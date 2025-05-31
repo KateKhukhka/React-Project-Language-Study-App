@@ -13,9 +13,6 @@ function Wordcard(props) {
     id,
   } = props;
 
-  //состояние для открытия перевода слова
-  //const [flipped, setFlipped] = useState(false);
-
   //открытие перевода при нажатии на кнопку
   const handleChange = React.useCallback(() => {
     setFlipped((prev) => !prev);
