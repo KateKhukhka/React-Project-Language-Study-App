@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 
 function Wordcard(props) {
   const {
@@ -20,12 +20,6 @@ function Wordcard(props) {
       handleChangeProgress(id);
     }
   }, [id, flipped, setFlipped, handleChangeProgress]);
-
-  //первая версия handleChange без useCallback:
-  // const handleChange = () => {
-  //    setFlipped(!flipped);
-  //    handleChangeProgress();
-  //  };
 
   //фокусировка на кнопке каждой карточки
   const buttonRef = useRef();

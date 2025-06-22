@@ -1,10 +1,17 @@
 import { useState } from "react";
-import cardData from "../cardData";
+//import cardData from "../cardData";
 import AddedWordForm from "./savedWordForm";
+import { observer } from "mobx-react-lite";
+import { useContext } from "react";
+import { WordsStoreContext } from "../stores/WordsStore";
 
-function AddNewWordForm() {
+const AddNewWordForm = observer(() => {
   //массив слов
-  const [words, setWords] = useState(cardData);
+
+  const { words, setWords } = useContext(WordsStoreContext);
+  //const store = useContext(WordsStoreContext);
+  //const words = store.words;
+  //const [words, setWords] = useState();
 
   //состояния в инпутах
   const [english, setEnglish] = useState("");
@@ -29,7 +36,20 @@ function AddNewWordForm() {
       const tags_json = "";
       const newWord = { id, english, transcription, russian, tags, tags_json };
 
-      setWords([newWord, ...words]);
+      //добавление слова на сервер
+      fetch("http://itgirlschool.justmakeit.ru/api/words/add", {
+        method: "POST",
+        body: JSON.stringify(newWord),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((response) => {
+          setWords([newWord, ...words]);
+        });
 
       //очистка инпутов и сброс ошибок после сохранения нового слова
       setEnglish("");
@@ -62,12 +82,26 @@ function AddNewWordForm() {
   };
 
   //проверка данных массива
-  console.log(words);
+  //console.log(words);
 
   //удаление слова по id при нажатии кнопки "delete"
   const clickDelete = (id) => {
     const updatedWords = words.filter((item) => item.id !== id);
-    setWords(updatedWords);
+
+    //удаление отредактированного слова на сервере
+    fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/delete`, {
+      method: "POST",
+      body: JSON.stringify(updatedWords),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setWords(updatedWords);
+      });
   };
 
   //редактирование слова
@@ -161,6 +195,6 @@ function AddNewWordForm() {
       })}
     </tbody>
   );
-}
+});
 
 export default AddNewWordForm;

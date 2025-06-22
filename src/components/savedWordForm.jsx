@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function AddedWordForm(props) {
-  const { id, english, transcription, russian, tags, clickDelete, editWord } = props;
+  const { id, english, transcription, russian, tags, tags_json, clickDelete, editWord } = props;
 
   //состояние режима редактирования
   const [editRow, setEditRow] = useState(false);
@@ -25,7 +25,27 @@ function AddedWordForm(props) {
       tags.match(/[a-z]/i)
     ) {
       setEditRow(!editRow);
-      console.log({ id: id, english: english, transcription: transcription, russian: russian, tags: tags });
+      //изменение отредактированного слова на сервере
+      fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/update`, {
+        method: "POST",
+        body: JSON.stringify({
+          id: id,
+          english: english,
+          transcription: transcription,
+          russian: russian,
+          tags: tags,
+          tags_json: tags_json,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log({ id: id, english: english, transcription: transcription, russian: russian, tags: tags });
+        });
     } else {
       alert("fill all required fields and check that all information is correct, please");
     }
