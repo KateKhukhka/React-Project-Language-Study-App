@@ -2,19 +2,10 @@ import { useState } from "react";
 import AddedWordForm from "./savedWordForm";
 import { observer } from "mobx-react-lite";
 import WordsStore from "../stores/WordsStore";
-//import { WordsStoreContext } from "../stores/WordsStore";
 
 const AddNewWordForm = observer(() => {
-  // let words = WordsStore.words;
-  // console.log(words);
-  // const { words, setWords } = useContext(WordsContext);
-  let words = WordsStore.words;
   //массив слов
-  console.log(words);
-  //const { words, setWords } = useContext(WordsStoreContext);
-  //const store = useContext(WordsStoreContext);
-  //const words = store.words;
-  //[words, setWords] = useState();
+  let words = WordsStore.words;
 
   //состояния в инпутах
   const [english, setEnglish] = useState("");
@@ -32,29 +23,12 @@ const AddNewWordForm = observer(() => {
   //сохранение нового слова или ошибка при нажатии кнопки "save"
   const clickSave = () => {
     if (english !== "" && transcription !== "" && russian !== "" && tags !== "") {
-      //создание id для новых слов
       const id = Date.now();
-
-      //создание и добавление нового слова в массив
       const tags_json = "";
       const newWord = { id, english, transcription, russian, tags, tags_json };
+      WordsStore.addWords(newWord);
+      words = [newWord, ...words];
 
-      //добавление слова на сервер
-
-      fetch("http://itgirlschool.justmakeit.ru/api/words/add", {
-        method: "POST",
-        body: JSON.stringify(newWord),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => {
-          return response.json();
-        })
-        .then((response) => {
-          words = [newWord, ...words];
-        });
-      console.log(words);
       //очистка инпутов и сброс ошибок после сохранения нового слова
       setEnglish("");
       setTranscription("");
@@ -91,33 +65,18 @@ const AddNewWordForm = observer(() => {
   //удаление слова по id при нажатии кнопки "delete"
   const clickDelete = (id) => {
     const updatedWords = words.filter((item) => item.id !== id);
-
-    //удаление отредактированного слова на сервере
-    fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/delete`, {
-      method: "POST",
-      body: JSON.stringify(updatedWords),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        words = updatedWords;
-      });
+    WordsStore.deleteWord(id);
+    words = updatedWords;
   };
 
   //редактирование слова
   const editWord = (id, field, e) => {
-    words(
-      words.map((item) => {
-        if (item.id === id) {
-          item[field] = e.target.value;
-        }
-        return item;
-      })
-    );
+    words = words.map((item) => {
+      if (item.id === id) {
+        item[field] = e.target.value;
+      }
+      return item;
+    });
   };
 
   return (

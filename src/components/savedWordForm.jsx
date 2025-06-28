@@ -1,9 +1,7 @@
 import { useState } from "react";
-//import WordsStore from "../stores/WordsStore";
 import { observer } from "mobx-react-lite";
 
 const AddedWordForm = observer((props) => {
-  //const { updateWord } = WordsStore;
   const { id, english, transcription, russian, tags, tags_json, clickDelete, editWord } = props;
 
   //состояние режима редактирования

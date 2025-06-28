@@ -11,13 +11,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Loading from "./components/common/loading";
 import Error from "./components/common/error";
 import WordsStore from "./stores/WordsStore";
-
-//import { WordsStore } from "./stores/WordsStore.js";
 import { observer } from "mobx-react-lite";
-//import { useContext } from "react";
 
 const App = observer(() => {
-  //const words = wordsStore.words;
   const loading = WordsStore.loading;
   const error = WordsStore.error;
   return (
