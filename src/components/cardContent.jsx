@@ -1,14 +1,16 @@
 import Wordcard from "./cardItem";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import "./css/carousel.css";
 
 import { observer } from "mobx-react-lite";
-import { WordsStoreContext } from "../stores/WordsStore";
+//import { WordsStoreContext } from "../stores/WordsStore";
+import WordsStore from "../stores/WordsStore";
 
 const CardContent = observer(() => {
   const [currentIndex, setCurrentIndex] = useState(0);
   //const words = props.words;
-  const store = useContext(WordsStoreContext);
+  const store = WordsStore;
+  //const store = useContext(WordsStoreContext);
   const words = store.words;
   console.log(words);
   const [flipped, setFlipped] = useState(false);

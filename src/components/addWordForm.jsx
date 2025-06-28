@@ -1,17 +1,20 @@
 import { useState } from "react";
-//import cardData from "../cardData";
 import AddedWordForm from "./savedWordForm";
 import { observer } from "mobx-react-lite";
-import { useContext } from "react";
-import { WordsStoreContext } from "../stores/WordsStore";
+import WordsStore from "../stores/WordsStore";
+//import { WordsStoreContext } from "../stores/WordsStore";
 
 const AddNewWordForm = observer(() => {
+  // let words = WordsStore.words;
+  // console.log(words);
+  // const { words, setWords } = useContext(WordsContext);
+  let words = WordsStore.words;
   //массив слов
-
-  const { words, setWords } = useContext(WordsStoreContext);
+  console.log(words);
+  //const { words, setWords } = useContext(WordsStoreContext);
   //const store = useContext(WordsStoreContext);
   //const words = store.words;
-  //const [words, setWords] = useState();
+  //[words, setWords] = useState();
 
   //состояния в инпутах
   const [english, setEnglish] = useState("");
@@ -37,6 +40,7 @@ const AddNewWordForm = observer(() => {
       const newWord = { id, english, transcription, russian, tags, tags_json };
 
       //добавление слова на сервер
+
       fetch("http://itgirlschool.justmakeit.ru/api/words/add", {
         method: "POST",
         body: JSON.stringify(newWord),
@@ -48,9 +52,9 @@ const AddNewWordForm = observer(() => {
           return response.json();
         })
         .then((response) => {
-          setWords([newWord, ...words]);
+          words = [newWord, ...words];
         });
-
+      console.log(words);
       //очистка инпутов и сброс ошибок после сохранения нового слова
       setEnglish("");
       setTranscription("");
@@ -100,13 +104,13 @@ const AddNewWordForm = observer(() => {
         return response.json();
       })
       .then((data) => {
-        setWords(updatedWords);
+        words = updatedWords;
       });
   };
 
   //редактирование слова
   const editWord = (id, field, e) => {
-    setWords(
+    words(
       words.map((item) => {
         if (item.id === id) {
           item[field] = e.target.value;

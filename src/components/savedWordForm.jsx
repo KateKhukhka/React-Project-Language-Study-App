@@ -1,6 +1,9 @@
 import { useState } from "react";
+//import WordsStore from "../stores/WordsStore";
+import { observer } from "mobx-react-lite";
 
-function AddedWordForm(props) {
+const AddedWordForm = observer((props) => {
+  //const { updateWord } = WordsStore;
   const { id, english, transcription, russian, tags, tags_json, clickDelete, editWord } = props;
 
   //состояние режима редактирования
@@ -26,6 +29,7 @@ function AddedWordForm(props) {
     ) {
       setEditRow(!editRow);
       //изменение отредактированного слова на сервере
+
       fetch(`http://itgirlschool.justmakeit.ru/api/words/${id}/update`, {
         method: "POST",
         body: JSON.stringify({
@@ -119,5 +123,5 @@ function AddedWordForm(props) {
       </td>
     </tr>
   );
-}
+});
 export default AddedWordForm;
